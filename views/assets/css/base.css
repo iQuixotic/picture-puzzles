@@ -5,3 +5,7 @@ html {
 canvas {
     border: 1px solid black;
 }
+
+img {
+    margin: 10px;
+}

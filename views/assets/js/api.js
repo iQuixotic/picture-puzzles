@@ -23,42 +23,67 @@
 //     console.log(arg)
 // }
 
-const canvas = document.createElement('canvas'),
-ctx = canvas.getContext('2d'),
-parts = [];
+const canvas = document.createElement('canvas')
+
+
+// const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+let parts = [];
 let img = new Image();
+// puzz.appendChild(canvas)
 
 
+// ctx.drawImage(img, 20, 20, 200, 200)
 
-split_16 = () => {
-    const w4 = img.width / 4
-    const h4 = img.height / 4
+
+// img.width = 1000;
+// img.height = 1000;
+// console.log(img)
+
+
+img.onload = function() {
+    
+// ctx.drawImage(img, 20, 20, 400, 400)
+        // const div = document.getElementById('Puzzle')
+
+        // div.appendChild(canvas)
+
+
+    let w4 = img.width / 4
+    let h4 = img.height / 4
 
     for (let i=0; i<16; i++){
-        const x = (-w4*i) % (w4*4)
-        const y = (-h4*i) <= h4 ? 0 : -h4
+        let x = (-w4*i) % (w4*4)
+        let y;
+        if((h4*i) <= h4) {
+            y = 0 
+        } else {
+            y = -h4
+        }
+        
 
         canvas.width = w4;
         canvas.height = h4;
+        console.log(w4, h4)
 
         ctx.drawImage(this, x, y, w4*4, h4*4)
+        // ctx.drawImage(img, 20, 20, 200, 200)
+
 
         parts.push(canvas.toDataURL())
 
-        const slicedImage = document.createElement('img')
+        let slicedImage = document.createElement('img')
         slicedImage.src = parts[i];
-        const div = document.getElementById('Puzzle')
+        let div = document.getElementById('Puzzle')
 
         div.appendChild(slicedImage)
 
         console.log(parts)
 
-        // console.log('x', x, 'y', y)
+        console.log('x', x, 'y', y)
     }
-
 }
 
-img.src = "../views/assets/img/pikachuNaruto.png"
-console.log(img)
 
-img.onload = split_16();
+// img.onload = split_16();
+img.src = "./assets/img/wolf.jpg"
