@@ -1,27 +1,23 @@
-// sliceItUp = () => {
-//     const postPic = document.getElementById('Puzzle_img-js')
-//     doTheFetch(postPic)   
-//     console.log(postPic)
-// } 
 
-// doTheFetch = (arg) => {
-//     fetch('http://localhost:4040/api/split', {
-//         method: 'post',
-//         body: JSON.stringify({
-//             img: arg.src
-//         }),
-//         headers: {
-//             "Content-Type": "application/json"
-//         }
-//       })
-//       .then((res) => {
-//         return res.json();
-//       })
-//       .catch(function (error) {  
-//         console.log('Request failure: ', error);  
-//       });
-//     console.log(arg)
-// }
+doTheFetch = (arg) => {
+    fetch('http://localhost:4040/api/split', {
+        method: 'post',
+        body: JSON.stringify({
+            partsArr: arg
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+      })
+      .then((imgParts) => {
+          console.log(res.json(imgParts))
+        // res.json();
+      })
+      .catch(function (error) {  
+        console.log('Request failure: ', error);  
+      });
+    // console.log(arg)
+}
 
 const canvas = document.createElement('canvas')
 
@@ -55,10 +51,14 @@ img.onload = function() {
     for (let i=0; i<16; i++){
         let x = (-w4*i) % (w4*4)
         let y;
-        if((h4*i) <= h4) {
+        if(i<3) {
             y = 0 
-        } else {
+        } else if(i<7) {
             y = -h4
+        } else if(i<11) {
+            y = -(h4 * 2)
+        } else {
+            y = -(h4 * 3)
         }
         
 
@@ -67,7 +67,6 @@ img.onload = function() {
         console.log(w4, h4)
 
         ctx.drawImage(this, x, y, w4*4, h4*4)
-        // ctx.drawImage(img, 20, 20, 200, 200)
 
 
         parts.push(canvas.toDataURL())
@@ -76,9 +75,13 @@ img.onload = function() {
         slicedImage.src = parts[i];
         let div = document.getElementById('Puzzle')
 
+        if(i%4 === 0) {
+            slicedImage.classList.add('new-line')
+        }
+
         div.appendChild(slicedImage)
 
-        console.log(parts)
+        // console.log(parts)
 
         console.log('x', x, 'y', y)
     }
@@ -87,3 +90,9 @@ img.onload = function() {
 
 // img.onload = split_16();
 img.src = "./assets/img/wolf.jpg"
+
+sliceItUp = () => {
+    // doTheFetch(parts)   
+    doTheFetch([1, 2, 3, 4, 5, 6, 7, 8])   
+
+} 
