@@ -1,9 +1,8 @@
-// const app = require('express')
 const router = require('express').Router();
 const path = require('path');
-const api = require('./api');
+// const api = require('./api');
 
-router.use('/api', api)
+// router.use('/api', api)
 
 // if no routes are hit, go to index
 router.use((req, res) => {

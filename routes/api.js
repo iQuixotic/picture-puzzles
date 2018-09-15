@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const external = require('../controllers/external')
+// const router = require('express').Router();
+// const external = require('../controllers/external')
 
-router.route('/split')
-    .post(external.sliceImage)
+// router.route('/split')
+//     .post(external.sliceImage)
 
-module.exports = router;
+// module.exports = router;
