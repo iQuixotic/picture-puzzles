@@ -4,6 +4,7 @@ const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d');
 let parts = [];
 let img = new Image();
+let elemDragStart, elemDragEnd, glass;
 
 // takes an image and preakes it up into 16 pieces
 img.onload = function() {
@@ -22,8 +23,7 @@ img.onload = function() {
             y = -(h4 * 2)
         } else {
             y = -(h4 * 3)
-        }
-        
+        }        
 
         canvas.width = w4;
         canvas.height = h4;
@@ -31,18 +31,14 @@ img.onload = function() {
         ctx.drawImage(this, x, y, w4*4, h4*4)
         parts.push({
             _tag: `${i}`,
-            imageSlice: canvas.toDataURL()
+            mySrc: canvas.toDataURL()
         })
     }
     shuffle(parts)
     printToPage(parts)
 } 
 
-img.src = "./assets/img/wolf.jpg"
-
-// sliceItUp = () => {
-//     console('hey')
-// } 
+img.src = "./assets/img/pikachu.png"
 
 // shuffles array of picture parts
 shuffle = (arr) => { 
@@ -66,24 +62,49 @@ shuffle = (arr) => {
 printToPage = (arr) => {
     arr.forEach(elem => {
 
-        let slicedImage = document.createElement('img')
-        slicedImage.src = elem.imageSlice;
-        let div = document.getElementById('Puzzle')
+        // let slicedImage = document.createElement('img')
+        let slicedImage = document.createElement('div');
+    
+        // slicedImage.src = elem.imageSlice;
+        slicedImage.style.background += 'url(' + parts[elem._tag].mySrc + ') no-repeat';
+        slicedImage.classList += 'Puzzle_broken-img';
+        slicedImage.style.backgroundSize = ' cover';
+        slicedImage.draggable = true;
+        slicedImage.id = elem._tag;
 
+        // add event listeners
+        slicedImage.addEventListener('dragstart', dragStart)
+        slicedImage.addEventListener('dragover', dragOver)
+        slicedImage.addEventListener('drop', drop)
+
+        let div = document.getElementById('Puzzle')
         div.appendChild(slicedImage)
-        console.log(arr)
     });
 }
 
-paneBuilder = () => {
-    const attachDiv = document.getElementById('Puzzle_map') 
-    console.log(attachDiv)
-    for(let i=0; i<16; i++) {
-        let baseDiv = document.createElement('div')       
-        baseDiv.classList +=  'Puzzle_map-panel'
-        attachDiv.appendChild(baseDiv)
-        console.log(attachDiv)
-    }
+dragStart = (e) => {
+    elemDragStart = e.target;    
+    glass = elemDragStart.style.background.toString();
+    console.log(elemDragStart.id)
 }
 
-paneBuilder();
+
+dragOver = (e) => {
+    e.preventDefault();
+}
+
+drop = (e) => {
+    elemDragEnd = e.target;
+    elemDragStart.style.background = elemDragEnd.style.background;
+    console.log(glass)
+
+    elemDragEnd.style.background = glass;
+    console.log(glass, elemDragStart.style.background, elemDragEnd.style.background)
+   
+}
+
+// checkForWin = () => {
+//     for(let i=0; i<16; 1++) {
+//         console.log('i', i)
+//     }
+// }
