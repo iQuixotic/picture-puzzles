@@ -5,6 +5,7 @@ const ctx = canvas.getContext('2d');
 let parts = [];
 let img = new Image();
 let elemDragStart, elemDragEnd, glass;
+let winstate;
 
 // takes an image and preakes it up into 16 pieces
 img.onload = function() {
@@ -14,7 +15,6 @@ img.onload = function() {
 
     for (let i=0; i<16; i++){
         let x = (-w4*i) % (w4*4)
-        console.log(w4*4)
         // let x=0;
         if(x === -0){
             x=0;
@@ -29,8 +29,6 @@ img.onload = function() {
         } else {
             y = -(h4 * 3)
         }        
-        console.log('x: ', i.toString(), x)
-        console.log('y: ', i.toString(),  y)
 
         canvas.width = w4;
         canvas.height = h4;
@@ -41,11 +39,11 @@ img.onload = function() {
             mySrc: canvas.toDataURL()
         })
     }
-    // shuffle(parts)
+    shuffle(parts)
     printToPage(parts)
 } 
 
-img.src = "./assets/img/pikachuNaruto.png"
+img.src = "./assets/img/pikachu.png"
 
 // shuffles array of picture parts
 shuffle = (arr) => { 
@@ -62,6 +60,11 @@ shuffle = (arr) => {
         arr[randomIndex] = glass;
 
     }
+    for(let i=0; i<arr.length; i++){
+        winstate = arr._tag;
+        console.log(winstate)
+    }
+    
     return arr;
 }
 
@@ -73,9 +76,10 @@ printToPage = (arr) => {
         let slicedImage = document.createElement('div');
     
         // slicedImage.src = elem.imageSlice;
-        slicedImage.style.background += 'url(' + parts[elem._tag].mySrc + ') no-repeat';
+        slicedImage.style.background += 'url(' + elem.mySrc + ') no-repeat';
         slicedImage.classList += 'Puzzle_broken-img';
         slicedImage.style.backgroundSize = ' cover';
+        
         slicedImage.draggable = true;
         slicedImage.id = elem._tag;
 
@@ -86,8 +90,6 @@ printToPage = (arr) => {
 
         let div = document.getElementById('Puzzle')
         div.appendChild(slicedImage)
-        // console.log(elem)
-        // console.log(arr[elem._tag]._tag)
     });
 }
 
@@ -97,7 +99,6 @@ dragStart = (e) => {
         background: elemDragStart.style.background.toString(),
         id: e.target.id.toString()
     }
-    // console.log(elemDragStart.id)
 }
 
 
@@ -106,6 +107,7 @@ dragOver = (e) => {
 }
 
 drop = (e) => {
+
     
     console.log('was', e.target.id)
     elemDragEnd = e.target;
@@ -116,32 +118,24 @@ drop = (e) => {
 
     elemDragEnd.style.background = glass.background;
     elemDragEnd.id = glass.id;
-    parts[e.target.id]._tag = glass.id;
-
-    // console.log('parts', parts[e.target.id]._tag)
-    console.log('is', elemDragEnd.id)
-
-    // console.log(glass, elemDragStart.style.background, elemDragEnd.style.background)
-   
+    parts[e.target.id]._tag = glass.id;   
 }
 
 checkForWin = () => {
     let correct = 0, wrong = 0;
+    let hold = [];
+    let puzzle = document.getElementById('Puzzle');
+    // console.log(puzzle.children[i].id)
     for(let i=0; i<16; i++) {
-        // winCheckableArr.push(i)
-        // console.log(winCheckableArr)
-        // console.log(parts)
+    console.log(puzzle.children[i].id)
 
-        // console.log(elemDragEnd.style.background)
-        if(i === parseInt(parts[i]._tag)) {
+        if(i.toString() === puzzle.children[i].id) {
             correct++;
             console.log(i, 'peepo')
         } else {
             wrong++;
             console.log(i, 'elsa')
         }        // parts[i]._tag = 
-        // console.log('i', parts[i]._tag)
-        // if(parts[i]._tag === )
     }
     
     console.log('you got ' + correct + ' correct and '+ wrong + ' wrong')

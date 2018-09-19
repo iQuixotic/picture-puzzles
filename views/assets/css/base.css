@@ -2,16 +2,27 @@ html {
     font-size: 10px;
 }
 
+body {
+    background-color: blue;
+}
+
 /* canvas {
     border: 1px solid black;
 } */
-
+/* 
 img {
     width: 25%;
-    /* margin: 2px; */
-}
+    margin: 2px;
+} */
 
 .container {
-    margin: 0 10% 0 10%;
-    text-align: center;
+    margin: 10%;
+    padding: 0 0 0 1%;
+    /* text-align: center; */
+}
+
+.flex { 
+    display: flex;
+    border: 1px solid green;
+    background-color: red;
 }
