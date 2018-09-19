@@ -14,16 +14,23 @@ img.onload = function() {
 
     for (let i=0; i<16; i++){
         let x = (-w4*i) % (w4*4)
+        console.log(w4*4)
+        // let x=0;
+        if(x === -0){
+            x=0;
+        }
         let y;
-        if(i<3) {
+        if(i<4) {
             y = 0 
-        } else if(i<7) {
+        } else if(i<8) {
             y = -h4
-        } else if(i<11) {
+        } else if(i<12) {
             y = -(h4 * 2)
         } else {
             y = -(h4 * 3)
         }        
+        console.log('x: ', i.toString(), x)
+        console.log('y: ', i.toString(),  y)
 
         canvas.width = w4;
         canvas.height = h4;
@@ -34,11 +41,11 @@ img.onload = function() {
             mySrc: canvas.toDataURL()
         })
     }
-    shuffle(parts)
+    // shuffle(parts)
     printToPage(parts)
 } 
 
-img.src = "./assets/img/pikachu.png"
+img.src = "./assets/img/pikachuNaruto.png"
 
 // shuffles array of picture parts
 shuffle = (arr) => { 
@@ -79,13 +86,18 @@ printToPage = (arr) => {
 
         let div = document.getElementById('Puzzle')
         div.appendChild(slicedImage)
+        // console.log(elem)
+        // console.log(arr[elem._tag]._tag)
     });
 }
 
 dragStart = (e) => {
     elemDragStart = e.target;    
-    glass = elemDragStart.style.background.toString();
-    console.log(elemDragStart.id)
+    glass = {
+        background: elemDragStart.style.background.toString(),
+        id: e.target.id.toString()
+    }
+    // console.log(elemDragStart.id)
 }
 
 
@@ -94,17 +106,43 @@ dragOver = (e) => {
 }
 
 drop = (e) => {
+    
+    console.log('was', e.target.id)
     elemDragEnd = e.target;
     elemDragStart.style.background = elemDragEnd.style.background;
-    console.log(glass)
+    elemDragStart.id = elemDragEnd.id;
 
-    elemDragEnd.style.background = glass;
-    console.log(glass, elemDragStart.style.background, elemDragEnd.style.background)
+    // console.log(glass)
+
+    elemDragEnd.style.background = glass.background;
+    elemDragEnd.id = glass.id;
+    parts[e.target.id]._tag = glass.id;
+
+    // console.log('parts', parts[e.target.id]._tag)
+    console.log('is', elemDragEnd.id)
+
+    // console.log(glass, elemDragStart.style.background, elemDragEnd.style.background)
    
 }
 
-// checkForWin = () => {
-//     for(let i=0; i<16; 1++) {
-//         console.log('i', i)
-//     }
-// }
+checkForWin = () => {
+    let correct = 0, wrong = 0;
+    for(let i=0; i<16; i++) {
+        // winCheckableArr.push(i)
+        // console.log(winCheckableArr)
+        // console.log(parts)
+
+        // console.log(elemDragEnd.style.background)
+        if(i === parseInt(parts[i]._tag)) {
+            correct++;
+            console.log(i, 'peepo')
+        } else {
+            wrong++;
+            console.log(i, 'elsa')
+        }        // parts[i]._tag = 
+        // console.log('i', parts[i]._tag)
+        // if(parts[i]._tag === )
+    }
+    
+    console.log('you got ' + correct + ' correct and '+ wrong + ' wrong')
+}

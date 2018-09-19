@@ -2,13 +2,13 @@ html {
     font-size: 10px;
 }
 
-canvas {
+/* canvas {
     border: 1px solid black;
-}
+} */
 
 img {
-    width: 24%;
-    margin: 2px;
+    width: 25%;
+    /* margin: 2px; */
 }
 
 .container {
