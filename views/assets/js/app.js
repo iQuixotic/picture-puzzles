@@ -15,7 +15,6 @@ img.onload = function() {
 
     for (let i=0; i<16; i++){
         let x = (-w4*i) % (w4*4)
-        // let x=0;
         if(x === -0){
             x=0;
         }
@@ -42,8 +41,8 @@ img.onload = function() {
     shuffle(parts)
     printToPage(parts)
 } 
-
-img.src = "./assets/img/pikachu.png"
+let puzzleChoice = 'castle.jpg'
+img.src = `./assets/img/${puzzleChoice}`;
 
 // shuffles array of picture parts
 shuffle = (arr) => { 
@@ -62,7 +61,6 @@ shuffle = (arr) => {
     }
     for(let i=0; i<arr.length; i++){
         winstate = arr._tag;
-        console.log(winstate)
     }
     
     return arr;
@@ -72,10 +70,8 @@ shuffle = (arr) => {
 printToPage = (arr) => {
     arr.forEach(elem => {
 
-        // let slicedImage = document.createElement('img')
         let slicedImage = document.createElement('div');
     
-        // slicedImage.src = elem.imageSlice;
         slicedImage.style.background += 'url(' + elem.mySrc + ') no-repeat';
         slicedImage.classList += 'Puzzle_broken-img';
         slicedImage.style.backgroundSize = ' cover';
@@ -114,8 +110,6 @@ drop = (e) => {
     elemDragStart.style.background = elemDragEnd.style.background;
     elemDragStart.id = elemDragEnd.id;
 
-    // console.log(glass)
-
     elemDragEnd.style.background = glass.background;
     elemDragEnd.id = glass.id;
     parts[e.target.id]._tag = glass.id;   
@@ -123,9 +117,8 @@ drop = (e) => {
 
 checkForWin = () => {
     let correct = 0, wrong = 0;
-    let hold = [];
+    // let hold = [];
     let puzzle = document.getElementById('Puzzle');
-    // console.log(puzzle.children[i].id)
     for(let i=0; i<16; i++) {
     console.log(puzzle.children[i].id)
 
@@ -135,7 +128,7 @@ checkForWin = () => {
         } else {
             wrong++;
             console.log(i, 'elsa')
-        }        // parts[i]._tag = 
+        }        
     }
     
     console.log('you got ' + correct + ' correct and '+ wrong + ' wrong')

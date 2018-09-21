@@ -11,9 +11,7 @@
 }
 
 .Puzzle_choices {
-    padding: 15%;
-    width: 70%;
-    
+    width: 409px;
     display: flex;
     flex-wrap: wrap;
     text-align: center;
