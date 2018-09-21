@@ -6,16 +6,23 @@ body {
     background-color: blue;
 } */
 
+h1 {
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+    font-style: oblique;
+    font-size: 3.5rem;
+}
+
 button {
     padding: 5px 9px;
     background-color: rgb(92, 0, 128);
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* font-weight: bold; */
     font-size: 1.5rem;
     border-radius: 10px;
     margin: 15px;
-    border: none;
+    border: 
+    none;
 }
 
 .container {
