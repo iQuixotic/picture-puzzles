@@ -12,19 +12,30 @@
     
 </head>
 <body>
-    You create it !!!
-   <h1>heres it at</h1>
-
+   <h1 >Pick a Puzzle !!!</h1>
+<!-- 
    <div class="container">
        <div id="Puzzle_map"></div>
-   </div>
+   </div> -->
 
    <div class="container">
-        <div id='Puzzle' class="Puzzle_choices"></div> 
-   </div>
-    
+        <button onclick='setPuzzle("pikachu.png")' id='pikachu'>PIKACHU</button>
+        <button onclick='setPuzzle("flower.jpg")' id='flower'>FLOWER</button>
+        <button onclick='setPuzzle("coral.jpg")' id='coral'>CORAL</button>
+        <button onclick='setPuzzle("clownfish.jpg")' id='clownFish'>CLOWN FISH</button>
+        <button onclick='setPuzzle("castle.jpg")' id='castle'>CASTLE</button>
 
-    <button onclick="checkForWin()">Click to console log ??</button>
+   </div>
+   <div class="buffer">
+        <div class="container">
+            <div id='Puzzle' class="Puzzle_choices"></div> 
+        </div>
+   </div>
+   
+    
+   <div class="container">
+        <button onclick="checkForWin()">How do did ?!?</button>
+   </div>
     
 
     <script src="assets/js/app.js"></script>

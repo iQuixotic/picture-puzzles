@@ -42,6 +42,23 @@ img.onload = function() {
     printToPage(parts)
 } 
 let puzzleChoice = 'castle.jpg'
+
+setPuzzle = (arg) => {
+    let puzzle = document.getElementById('Puzzle');
+    let brokenImgs = document.getElementsByClassName('Puzzle_broken-img');
+    // let arr = puzzle.children;
+    for(let i=15; i>=0; i--) {
+        console.log(brokenImgs.length)
+        puzzle.removeChild(brokenImgs[i]);        
+    }
+    // brokenImgs.forEach(elem => {
+    //     console.log(elem)
+    //     // puzzle.removeChild(this);
+    // });
+    puzzleChoice = arg;
+    img.src = `./assets/img/${puzzleChoice}`;
+    parts = [];
+}
 img.src = `./assets/img/${puzzleChoice}`;
 
 // shuffles array of picture parts
