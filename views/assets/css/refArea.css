@@ -1,0 +1,13 @@
+#image-ref-div {
+    position: fixed;
+    top: 30%;
+    left: 78%; 
+    z-index: 1;
+}
+
+.image-ref {
+    border: 10px solid black;
+    border-radius: 5px;
+    width: 140px;
+    height: 150px;
+}

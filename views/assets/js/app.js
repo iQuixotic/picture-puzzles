@@ -5,7 +5,8 @@ const ctx = canvas.getContext('2d');
 let parts = [];
 let img = new Image();
 let elemDragStart, elemDragEnd, glass;
-let winstate;
+let referenceImageUsing = false;
+// let winstate;
 
 // takes an image and preakes it up into 16 pieces
 img.onload = function() {
@@ -31,6 +32,7 @@ img.onload = function() {
 
         canvas.width = w4;
         canvas.height = h4;
+        canvas.imageSmoothingEnabled = false;
 
         ctx.drawImage(this, x, y, w4*4, h4*4)
         parts.push({
@@ -44,9 +46,11 @@ img.onload = function() {
 let puzzleChoice = 'castle.jpg'
 
 setPuzzle = (arg) => {
+    if(referenceImageUsing) {
+        showRef(img)
+    }
     let puzzle = document.getElementById('Puzzle');
     let brokenImgs = document.getElementsByClassName('Puzzle_broken-img');
-    // let arr = puzzle.children;
     for(let i=15; i>=0; i--) {
         console.log(brokenImgs.length)
         puzzle.removeChild(brokenImgs[i]);        
@@ -120,9 +124,6 @@ dragOver = (e) => {
 }
 
 drop = (e) => {
-
-    
-    console.log('was', e.target.id)
     elemDragEnd = e.target;
     elemDragStart.style.background = elemDragEnd.style.background;
     elemDragStart.id = elemDragEnd.id;
@@ -137,16 +138,47 @@ checkForWin = () => {
     // let hold = [];
     let puzzle = document.getElementById('Puzzle');
     for(let i=0; i<16; i++) {
-    console.log(puzzle.children[i].id)
+    // console.log(puzzle.children[i].id)
 
         if(i.toString() === puzzle.children[i].id) {
+            blink(puzzle.children[i], 'green');
             correct++;
-            console.log(i, 'peepo')
+            // console.log(i, 'peepo')
         } else {
+            blink(puzzle.children[i], 'red')
             wrong++;
-            console.log(i, 'elsa')
+            // console.log(i, 'elsa')
         }        
     }
     
-    console.log('you got ' + correct + ' correct and '+ wrong + ' wrong')
+    // console.log('you got ' + correct + ' correct and '+ wrong + ' wrong')
+}
+
+showRef = (arg) => {    
+    let pictureReferenceDiv = document.getElementById('image-ref-div')
+
+    if(!referenceImageUsing) {
+        pictureReferenceDiv.appendChild(arg)
+        arg.classList = 'image-ref';
+        referenceImageUsing = true;
+    } else {
+        pictureReferenceDiv.removeChild(arg);        
+        referenceImageUsing = false;
+    }
+
+}
+
+blink = (arg, color) => {
+    // console.log(arg)
+    let backgroungOn = true;
+    const imgBackground = arg.style.background.toString();
+    setInterval(() => { 
+        if(backgroungOn) {  
+            arg.style.background = 'none';
+            arg.style.backgroundColor = color;     
+        } else {
+            arg.style.background = imgBackground;     
+        }     
+    backgroungOn = !backgroungOn;
+    }, 1000);
 }
