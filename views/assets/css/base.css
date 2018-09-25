@@ -37,6 +37,9 @@ button {
     margin: 50px 0 25px;
 }
 
+.bold {
+    font-weight: bold;
+}
 /* .flex { 
     display: flex;
     border: 1px solid green;

@@ -4,9 +4,12 @@ const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d');
 let parts = [];
 let img = new Image();
-let elemDragStart, elemDragEnd, glass;
+let elemDragStart, elemDragEnd, glass, results;
 let referenceImageUsing = false;
-// let winstate;
+let timerOn = false;
+let min = 0;
+let sec = 0;
+const resultsDiv = document.getElementById('results');
 
 // takes an image and preakes it up into 16 pieces
 img.onload = function() {
@@ -46,6 +49,13 @@ img.onload = function() {
 let puzzleChoice = 'castle.jpg'
 
 setPuzzle = (arg) => {
+
+    // resultsDiv.remove(results)
+    results = '';
+    resultsDiv.innerHTML = results;
+    min = (00).toString();
+    sec= (00).toString();
+    seconds.innerHTML = '00';
     if(referenceImageUsing) {
         showRef(img)
     }
@@ -131,6 +141,11 @@ drop = (e) => {
     elemDragEnd.style.background = glass.background;
     elemDragEnd.id = glass.id;
     parts[e.target.id]._tag = glass.id;   
+
+    if(!timerOn) {
+        timerOn = true;
+        startTimer();
+    }
 }
 
 checkForWin = () => {
@@ -149,9 +164,12 @@ checkForWin = () => {
             wrong++;
             // console.log(i, 'elsa')
         }        
+        stopTimer();
     }
-    
-    // console.log('you got ' + correct + ' correct and '+ wrong + ' wrong')
+    results = `You got <span class="bold">${correct.toString()}/16</span> correct in  
+    <span class="bold">${min.toString()}</span> minutes and <span class="bold">
+    ${sec.toString()}</span> seconds !!!`;
+    resultsDiv.innerHTML = results;
 }
 
 showRef = (arg) => {    
@@ -181,4 +199,33 @@ blink = (arg, color) => {
         }     
     backgroungOn = !backgroungOn;
     }, 1000);
+}
+
+startTimer = () => {
+    const seconds = document.getElementById('seconds');
+    const minutes = document.getElementById('minutes');
+    setInterval(() => {
+        if(timerOn) {
+            if(sec<59) {
+                sec++;
+            } else {
+                sec = 0;
+                min++;
+            }
+            if(sec<10) {
+                seconds.innerHTML = '0' + sec.toString();
+            } else {
+                seconds.innerHTML = sec;
+            }        
+            if(min<10) {
+                minutes.innerHTML = '0' + min.toString();
+            } else {
+                minutes.innerHTML = min;
+            }
+        }
+    }, 1000);
+}
+
+stopTimer = () => {
+    timerOn = false;
 }

@@ -13,3 +13,17 @@
 .Nav_drop {
     margin-top: 80px;
 }
+
+#results {
+    text-align: center;
+    font-style: oblique;
+    font-size: 2.5rem;
+}
+
+#timer {
+    color: orange;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 20px;
+    right: 5%;
+}
