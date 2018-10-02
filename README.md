@@ -7,7 +7,7 @@ This project is a simplistic one born from my love of puzzles. I hope you enjoy 
 
 link to project here: 
 
-https://bank-manager-app-9485.herokuapp.com/
+
 
 ### About
 
@@ -26,4 +26,4 @@ css | styling html |
 
 <hr>
 
- ![image](views/assets/img/screenShot.png)
+ ![image](views/assets/img/screenshot.png)
