@@ -62,12 +62,10 @@ setPuzzle = (arg) => {
     let puzzle = document.getElementById('Puzzle');
     let brokenImgs = document.getElementsByClassName('Puzzle_broken-img');
     for(let i=15; i>=0; i--) {
-        console.log(brokenImgs.length)
         puzzle.removeChild(brokenImgs[i]);        
     }
     // brokenImgs.forEach(elem => {
-    //     console.log(elem)
-    //     // puzzle.removeChild(this);
+    // puzzle.removeChild(this);
     // });
     puzzleChoice = arg;
     img.src = `./assets/img/${puzzleChoice}`;
@@ -187,7 +185,6 @@ showRef = (arg) => {
 }
 
 blink = (arg, color) => {
-    // console.log(arg)
     let backgroungOn = true;
     const imgBackground = arg.style.background.toString();
     setInterval(() => { 
