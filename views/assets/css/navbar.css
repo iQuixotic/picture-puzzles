@@ -3,15 +3,15 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
+    height: 7rem;
     color: white;
     background-color: rgb(92, 0, 128);
-    border-bottom: 10px soid black;
+    border-bottom: 1rem soid black;
     box-shadow: 2px 0px 10px 1px rgba(0, 0, 0, 0.5);    
 }
 
 .Nav_drop {
-    margin-top: 80px;
+    margin-top: 8rem;
 }
 
 #results {
@@ -24,6 +24,15 @@
     color: orange;
     font-size: 2.5rem;
     position: absolute;
-    top: 20px;
+    top: 2rem;
     right: 5%;
+}
+
+@media screen and (max-width: 700px) {
+    
+    .Nav_drop {
+        display:  flex;
+        flex-wrap: wrap;
+    }
+    
 }

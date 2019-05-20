@@ -11,3 +11,12 @@
     width: 140px;
     height: 150px;
 }
+
+@media screen and (max-width: 600px) {
+    #image-ref-div {
+        position: inherit;
+        width: 100%;
+        text-align: center;
+    }
+    
+}

@@ -1,10 +1,6 @@
 html {
     font-size: 10px;
 }
-/* 
-body {
-    background-color: blue;
-} */
 
 h1 {
     font-family: Helvetica, sans-serif;
@@ -19,7 +15,7 @@ button {
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.5rem;
-    border-radius: 10px;
+    border-radius: 1rem;
     margin: 15px;
     border: 
     none;
@@ -34,14 +30,27 @@ button {
 }
 
 .buffer {
-    margin: 50px 0 25px;
+    margin: 5rem 0 2.5rem;
 }
 
 .bold {
     font-weight: bold;
 }
-/* .flex { 
-    display: flex;
-    border: 1px solid green;
-    background-color: rgb(0, 255, 170);
-} */
+
+@media screen and (max-width: 700px) {
+    html {
+        font-size: 8px;
+    }
+    .container {
+    margin-left:  0;
+    width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    html {
+        font-size: 6px;
+    }
+}
+

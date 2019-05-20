@@ -24,7 +24,31 @@
 
 .Puzzle_broken-img {
     cursor: -webkit-grab;
-    height: 100px;
-    width: 100px;
+    height: 10rem;
+    width: 10rem;
     margin: 1px;
+}
+
+@media screen and (max-width: 600px) {
+ 
+    .Puzzle_choices {
+        width: 100%;
+    }
+
+    .Puzzle_broken-img {
+        height: 12rem;
+        width: 24%;
+    }
+    
+}
+
+@media screen and (max-width: 260px) {
+
+    .Puzzle_choices {
+        width: 100%;
+    }
+    .Puzzle_broken-img {
+        height: 9.6rem;
+        width: 24%;
+    }
 }
