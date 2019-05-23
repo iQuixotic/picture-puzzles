@@ -29,6 +29,18 @@
     margin: 1px;
 }
 
+@media screen and (max-width: 780px) {
+    .Puzzle_choices {
+        margin-left: 10%;
+        width: 80%;
+    }
+    
+    .Puzzle_broken-img {
+        height: 10rem;
+        width: 24%;
+        margin: 1px;
+    }
+}
 @media screen and (max-width: 600px) {
  
     .Puzzle_choices {
@@ -47,6 +59,7 @@
     .Puzzle_choices {
         width: 100%;
     }
+
     .Puzzle_broken-img {
         height: 9.6rem;
         width: 24%;
